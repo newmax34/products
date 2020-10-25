@@ -6,6 +6,16 @@ Created on Sat Oct 24 15:33:09 2020
 """
 
 products = []
+with open("products.csv", "r") as f:
+    for line in f:
+        if"name, price" in line:
+            continue
+        name, price = line.strip().split(",")
+        products.append([name, price])
+print(products)
+
+
+
 while True: 
     name = input("Please enter product's name: ")
     if name == "q":   # quit 
@@ -21,7 +31,7 @@ for p in products:
     
 
 with open ("products.csv", "w") as f:
-        f.write("products, price\n")
+        f.write("name, price\n")
         for p in products:
             f.write(p[0]+ ","+p[1]+"\n")
             
